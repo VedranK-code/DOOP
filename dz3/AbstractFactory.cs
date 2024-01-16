@@ -17,7 +17,7 @@ namespace AbstractFactory
         }
         public override IMonitor createMonitor()
         {
-            return new DellDisplay();
+            return new DellMonitor();
         }
 
     }
@@ -29,7 +29,7 @@ namespace AbstractFactory
         }
         public override IMonitor createMonitor()
         {
-            return new SamsungDisplay();
+            return new SamsungMonitor();
         }
 
     }
@@ -52,7 +52,7 @@ namespace AbstractFactory
         }
     }
 
-    public class DellDisplay : IMonitor
+    public class DellMonitor : IMonitor
     {
         public void SellMonitor()
         {
@@ -60,7 +60,7 @@ namespace AbstractFactory
         }
     }
 
-    public class SamsungDisplay : IMonitor
+    public class SamsungMonitor : IMonitor
     {
         public void SellMonitor()
         {
