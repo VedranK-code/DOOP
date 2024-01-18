@@ -1,55 +1,70 @@
+using System;
+using System.Collections.Generic;
+
 namespace DekoraterZadatak
 {
-    public class Effect
+    public interface IEffect{
+        public void ApplyEffect();
+    }
+
+    public class NoEffect : IEffect{
+        public void ApplyEffect(){}
+    }
+    public class BaseHealthEffect : IEffect
     {
+        IEffect effect;
+        public BaseHealthEffect(IEffect effect){
+            this.effect=effect;
+        }
         public void ApplyEffect()
         {
             Console.WriteLine("Apply Base Effect");
         }
     }
-    public class HealthRegen
+    public class HealthRegeneraton : BaseHealthEffect
     {
-        public void HealthRegenEffect()
+        public HealthRegeneraton(IEffect effect) : base(effect){
+        }
+        public void ApplyEffect()
         {
+            base.ApplyEffect();
             Console.WriteLine("Health Regen");
         }
     }
-    public class ArmorEffect
+    public class ArmorEffect : BaseHealthEffect
     {
-        public void ArmorIncrease()
+        public ArmorEffect(IEffect effect) : base(effect){
+        }
+        public void ApplyEffect()
         {
+            base.ApplyEffect();
             Console.WriteLine("Armor Increase");
         }
     }
-    public class MagicDmg
+    public class MagicDmg : BaseHealthEffect
     {
-        public void IncreaseMagicDmg()
+        public MagicDmg(IEffect effect) : base(effect){
+        }
+        public void ApplyEffect()
         {
+            base.ApplyEffect();
             Console.WriteLine("Magic Dmg");
         }
     }
     public class Player
     {
-        Effect effect;
-        MagicDmg magicDmg;
-        ArmorEffect armorEffect;
-        HealthRegen healthRegen;
+        IEffect effect;
+        
         public Player()
         {
-            effect = new Effect();
-            magicDmg = new MagicDmg();
-            armorEffect = new ArmorEffect();
-            healthRegen = new HealthRegen();
+            effect = new BaseHealthEffect(new HealthRegeneraton(new ArmorEffect(new MagicDmg(new NoEffect()))));
             effect.ApplyEffect();
-            magicDmg.IncreaseMagicDmg();
-            armorEffect.ArmorIncrease();
-            healthRegen.HealthRegenEffect();
         }
     }
 
     public static class ClientCode
     {
-        public static void Run()
+        static void Main()
         {
             new Player();
         }

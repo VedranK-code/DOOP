@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace DekoraterRjesenje
 {
     public interface IEffect
@@ -72,7 +75,7 @@ namespace DekoraterRjesenje
     }
     public static class ClientCode
     {
-        public static void Run()
+        static void Main()
         {
             new Player();
         }
