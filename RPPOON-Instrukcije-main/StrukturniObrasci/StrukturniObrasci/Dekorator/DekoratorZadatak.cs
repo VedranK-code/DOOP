@@ -8,7 +8,9 @@ namespace DekoraterZadatak
     }
 
     public class NoEffect : IEffect{
-        public void ApplyEffect(){}
+        public void ApplyEffect(){
+            Console.WriteLine("No Effect");
+        }
     }
     public class BaseHealthEffect : IEffect
     {
